@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Валентина Лесковская](https://up.htmlacademy.ru/javascript/28/user/2237561).
-* Наставник: `[Олег Глущенко](https://htmlacademy.ru/profile/id305355)`.
+* Наставник: [Олег Глущенко](https://htmlacademy.ru/profile/id305355).
 
 ---
 
