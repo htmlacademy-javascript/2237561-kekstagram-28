@@ -1,2 +1,3 @@
 import {getPhotoDescriptons} from './data.js';
-//console.log(getPhotoDescriptons());
+//eslint-disable-next-line no-console
+console.log(getPhotoDescriptons());
