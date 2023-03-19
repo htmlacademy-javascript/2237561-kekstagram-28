@@ -1,4 +1,2 @@
-import {getPhotoDescriptons} from './data.js';
-import {container} from './thumbnails.js';
-
-container(getPhotoDescriptons());
+import './data.js';
+import './thumbnails.js';

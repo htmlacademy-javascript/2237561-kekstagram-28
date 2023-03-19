@@ -1,6 +1,6 @@
 import {getPhotoDescriptons} from './data.js';
 
-const container = document.querySelector('.pictures');
+const containerPictures = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
 const someThumbnails = getPhotoDescriptons();
@@ -13,9 +13,7 @@ someThumbnails.forEach(({url, likes, comments}) => {
   thumbnail.querySelector('.picture__img').src = url;
   thumbnail.querySelector('.picture__likes').textContent = likes;
   thumbnail.querySelector('.picture__comments').textContent = comments.length;
-  container.appendChild(thumbnail);
+  containerPictures.appendChild(thumbnail);
   thumbnailsFragment.appendChild(thumbnail);
 });
-container.appendChild(thumbnailsFragment);
-
-export {container};
+containerPictures.appendChild(thumbnailsFragment);
