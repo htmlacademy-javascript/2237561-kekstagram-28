@@ -19,19 +19,21 @@ const generateCommentId = createRandomIdFromRangeGenerator(1, 500);
 const createComment = () => ({
   id: generateCommentId(0, 500),
   avatar: `img/avatar-${getRandomInteger(1, AVATAR_MAX)}.svg`,
+  alt: 'Аватар',
   message: getRandomArrayElement(COMMENTS),
   name: getRandomArrayElement(NAMES)
 
 });
+const getComments = () => Array.from({length: getRandomInteger(COMMENTS_MIN, COMMENTS_MAX)}, createComment);
 
 const createPhotoDescriptons = () => ({
   id: generatePhotoId(1, 25),
   url: `photos/${generateUrlId(URL_MIN, URL_MAX)}.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomInteger(15,200),
-  comments: Array.from({length: getRandomInteger(COMMENTS_MIN, COMMENTS_MAX)}, createComment)
+  comments: getComments()
 });
 
 const getPhotoDescriptons = () => Array.from({length: PHOTOS_ID}, createPhotoDescriptons);
 
-export {getPhotoDescriptons};
+export {getPhotoDescriptons, getComments};

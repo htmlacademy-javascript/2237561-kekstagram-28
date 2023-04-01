@@ -1,4 +1,7 @@
 import {getPhotoDescriptons} from './data.js';
-import {container} from './thumbnails.js';
+import {renderThumbnail} from './thumbnails.js';
+import {renderFullSizePhoto} from './render-full-size-photo.js';
 
-container(getPhotoDescriptons());
+const photoDescriptions = getPhotoDescriptons();
+renderThumbnail(photoDescriptions);
+renderFullSizePhoto(photoDescriptions);
