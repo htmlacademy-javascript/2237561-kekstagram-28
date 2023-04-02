@@ -19,7 +19,7 @@ const generateCommentId = createRandomIdFromRangeGenerator(1, 500);
 const createComment = () => ({
   id: generateCommentId(0, 500),
   avatar: `img/avatar-${getRandomInteger(1, AVATAR_MAX)}.svg`,
-  alt: 'Аватар',
+  alt: 'Аватар комментатора',
   message: getRandomArrayElement(COMMENTS),
   name: getRandomArrayElement(NAMES)
 
