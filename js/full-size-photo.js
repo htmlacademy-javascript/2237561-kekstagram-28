@@ -2,7 +2,7 @@
 import './thumbnails.js';
 import {isEscapeKey} from './util.js';
 
-
+const COMMENTS_AMOUNT = 5;
 const fullSizePhoto = document.querySelector('.big-picture');
 const fullSizeClosePhoto = document.querySelector('.big-picture__cancel');
 const scrollThumbnail = document.querySelector('body');
@@ -45,11 +45,25 @@ const createCommentsList = (comments, commentsContainer) => {
     commentsContainer.appendChild(commentList);
   });
 };
+const showComments = (arr) => {
+  const count = Math.min(arr.length, COMMENTS_AMOUNT);
+  for(let i = 0; i < count; i++){
+    arr[i].classList.add('hidden');
+  }
+  commentsCount.textContent = `${socialComments.children.length - socialComments.querySelectorAll('hidden').length} из ${socialComments.children.length} комментариев`;
+};
+const renderComments = () => {
+  const hiddenComments = socialComments.querySelectorAll('hidden');
+  showComments(hiddenComments);
+  if(hiddenComments.length <= COMMENTS_AMOUNT) {
+    commentsLoader.classList.add('hidden');
+  }
+};
+
+commentsLoader.addEventListener('click', renderComments);
 
 const onClickThumbnail = (someThumbnails) => {
   fullSizePhoto.classList.remove('hidden');
-  commentsCount.classList.add('hidden');
-  commentsLoader.classList.add('hidden');
 
   renderPhotoDetails(someThumbnails);
   socialComments.innerHTML = '';
@@ -68,4 +82,4 @@ fullSizeClosePhoto.addEventListener('click', () => {
   closeFullSizePhoto();
 });
 
-export {onClickThumbnail, createCommentsList};
+export {onClickThumbnail, createCommentsList, renderComments};

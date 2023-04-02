@@ -1,5 +1,5 @@
 import {renderThumbnail} from './thumbnails.js';
-import {onClickThumbnail, createCommentsList} from './full-size-photo.js';
+import {onClickThumbnail, createCommentsList, renderComments} from './full-size-photo.js';
 
 const containerPictures = document.querySelector('.pictures');
 const fullSizePhoto = document.querySelector('.big-picture');
@@ -14,6 +14,7 @@ const renderFullSizePhoto = (pictures) => {
     const photoItem = pictures.find((item)=> item.id === +thumbnail.dataset.thumbnailIndex);
     onClickThumbnail(photoItem);
     createCommentsList(photoItem.comments, socialComments);
+    renderComments();
   });
   renderThumbnail(pictures, containerPictures);
 };
