@@ -12,7 +12,6 @@ const renderThumbnail = (someThumbnails) => {
     thumbnail.querySelector('.picture__img').alt = description;
     thumbnail.querySelector('.picture__likes').textContent = likes;
     thumbnail.querySelector('.picture__comments').textContent = comments.length;
-    containerPictures.appendChild(thumbnail);
     thumbnailsFragment.appendChild(thumbnail);
     thumbnail.dataset.thumbnailIndex = id;
   });
