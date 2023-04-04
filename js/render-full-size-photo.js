@@ -12,6 +12,7 @@ const renderFullSizePhoto = (pictures) => {
     if(!thumbnail){
       return;
     }
+
     const photoItem = pictures.find((item)=> item.id === +thumbnail.dataset.thumbnailIndex);
     onClickThumbnail(photoItem);
     commentsLoader.classList.remove('hidden');
