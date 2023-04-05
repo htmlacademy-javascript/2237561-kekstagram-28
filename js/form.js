@@ -1,5 +1,6 @@
 import {isEscapeKey} from './util.js';
 import {pristine} from './validate.js';
+import {resetScale} from './scale.js';
 
 const form = document.querySelector('.img-upload__form');
 const body = document.querySelector('body');
@@ -19,6 +20,7 @@ const onDocumentKeydown = (evt) => {
 function onCloseForm () {
   form.reset();
   pristine.reset();
+  resetScale();
   uploadOverlay.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
