@@ -1,7 +1,8 @@
-import {isEscapeKey} from './util.js';
+import {isEscapeKey, showAlert} from './util.js';
 import {pristine} from './validate.js';
 import {resetScale} from './scale.js';
 import {resetEffects} from './effects.js';
+import {sendData} from './api.js';
 
 const form = document.querySelector('.img-upload__form');
 const body = document.querySelector('body');
@@ -10,6 +11,11 @@ const uploadCancel = form.querySelector('.img-upload__cancel');
 const uploadFile = form.querySelector('#upload-file');
 const commentField = form.querySelector('.text__description');
 const hashtagField = form.querySelector('.text__hashtags');
+const submitButton = form.querySelector('.img-upload__submit');
+const SubmitButtonText = {
+  IDLE: 'Сохранить',
+  SENDING: 'Сохраняю...'
+};
 
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -49,3 +55,31 @@ hashtagField.addEventListener('keydown', (evt) => {
     evt.stopPropagation();
   }
 });
+
+const blockSubmitButton = () => {
+  submitButton.disabled = true;
+  submitButton.textContent = SubmitButtonText.SENDING;
+};
+
+const unblockSubmitButton = () => {
+  submitButton.disabled = false;
+  submitButton.textContent = SubmitButtonText.IDLE;
+};
+
+const setUserFormSubmit = (onSuccess) => {
+  form.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+
+    const isValid = pristine.validate();
+    if (isValid) {
+      blockSubmitButton();
+      sendData(new FormData(evt.target))
+        .then(onSuccess)
+        .catch((err) => {
+          showAlert(err.message);
+        });
+    }
+  });
+};
+
+export {blockSubmitButton, unblockSubmitButton, setUserFormSubmit, onOpenForm, onCloseForm, onDocumentKeydown};

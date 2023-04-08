@@ -1,4 +1,4 @@
-import {getRandomArrayElement} from './util.js';
+/*import {getRandomArrayElement} from './util.js';
 import {createRandomIdFromRangeGenerator} from './util.js';
 import {getRandomInteger} from './util.js';
 
@@ -36,4 +36,4 @@ const createPhotoDescriptons = () => ({
 
 const getPhotoDescriptons = () => Array.from({length: PHOTOS_ID}, createPhotoDescriptons);
 
-export {getPhotoDescriptons, getComments};
+export {getPhotoDescriptons, getComments};*/
