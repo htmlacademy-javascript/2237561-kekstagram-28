@@ -1,4 +1,3 @@
-//import {getPhotoDescriptons} from './data.js';
 import {renderThumbnail} from './thumbnails.js';
 import {getData} from './api.js';
 import {showAlert} from './util.js';
