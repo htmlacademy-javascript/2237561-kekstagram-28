@@ -1,4 +1,4 @@
-import './data.js';
+//import './data.js';
 
 const containerPictures = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
