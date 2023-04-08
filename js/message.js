@@ -4,11 +4,27 @@ import {onCloseForm, onDocumentKeydown} from './form.js';
 const successMessageTemplate = document.querySelector('#success').content;
 const errorMessageTemplate = document.querySelector('#error').content;
 
+<<<<<<< HEAD
 const closeErrorMessage = () => {
   document.querySelector('.error').remove();
   document.addEventListener('keydown', onDocumentKeydown);
   document.removeEventListener('keydown', closeErrorKeydown);
 };
+=======
+function closeErrorKeydown (evt) {
+  if (isEscapeKey(evt)) {
+    document.querySelector('.error').remove();
+    document.addEventListener('keydown', onDocumentKeydown);
+  }
+}
+
+function closeSuccessKeydown (evt) {
+  if (isEscapeKey(evt)) {
+    document.querySelector('.success').remove();
+    onCloseForm();
+  }
+}
+>>>>>>> 2367b0ef2cdb8f95525bc32a3f64fe30235d662a
 
 const onClickOutModal = (evt) => {
   if(evt.target.matches('.success')){
@@ -16,6 +32,7 @@ const onClickOutModal = (evt) => {
     onCloseForm();
   }
   if(evt.target.matches('.error')){
+<<<<<<< HEAD
     closeErrorMessage();
   }
 };
@@ -25,6 +42,15 @@ function closeErrorKeydown (evt) {
     closeErrorMessage();
   }
 }
+=======
+    document.querySelector('.error').remove();
+  }
+};
+
+const closeErrorMessage = () => {
+  document.querySelector('.error').remove();
+};
+>>>>>>> 2367b0ef2cdb8f95525bc32a3f64fe30235d662a
 
 const showErrorMessage = function() {
   const errorMessage = errorMessageTemplate.cloneNode(true);
@@ -42,6 +68,7 @@ const closeSuccessMessage = () => {
   document.querySelector('.success').remove();
 };
 
+<<<<<<< HEAD
 function closeSuccessKeydown (evt) {
   if (isEscapeKey(evt)) {
     closeSuccessMessage();
@@ -49,6 +76,8 @@ function closeSuccessKeydown (evt) {
   }
 }
 
+=======
+>>>>>>> 2367b0ef2cdb8f95525bc32a3f64fe30235d662a
 const showSuccessMessage = function() {
   const successMessage = successMessageTemplate.cloneNode(true);
   document.body.append(successMessage);
