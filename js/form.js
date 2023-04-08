@@ -66,11 +66,7 @@ const unblockSubmitButton = () => {
   submitButton.textContent = SubmitButtonText.IDLE;
 };
 
-<<<<<<< HEAD
 const setUserFormSubmit = ({onSuccess, onError}) => {
-=======
-const setUserFormSubmit = (onSuccess) => {
->>>>>>> 2367b0ef2cdb8f95525bc32a3f64fe30235d662a
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
@@ -80,14 +76,10 @@ const setUserFormSubmit = (onSuccess) => {
       sendData(new FormData(evt.target))
         .then(onSuccess)
         .catch((err) => {
-<<<<<<< HEAD
           onError(err);
         })
         .finally(() => {
           unblockSubmitButton();
-=======
-          showAlert(err.message);
->>>>>>> 2367b0ef2cdb8f95525bc32a3f64fe30235d662a
         });
     }
   });
