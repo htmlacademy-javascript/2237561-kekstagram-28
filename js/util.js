@@ -42,18 +42,6 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
-const shuffle = (array) => {
-  let m = array.length, t, i;
-  while (m) {
-    i = Math.floor(Math.random() * m--);
-    t = array[m];
-    array[m] = array[i];
-    array[i] = t;
-  }
-
-  return array;
-};
-
 function debounce (callback, timeoutDelay = 500) {
   let timeoutId;
 
@@ -63,4 +51,4 @@ function debounce (callback, timeoutDelay = 500) {
   };
 }
 
-export {getRandomArrayElement, createRandomIdFromRangeGenerator, getRandomInteger, isEscapeKey, showAlert, shuffle,debounce};
+export {getRandomArrayElement, createRandomIdFromRangeGenerator, getRandomInteger, isEscapeKey, showAlert, debounce};

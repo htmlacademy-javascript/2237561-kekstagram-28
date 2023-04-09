@@ -5,12 +5,12 @@ const IMG_AMOUNT = 10;
 const TIME_OF_DELAY = 500;
 
 const filtersContainer = document.querySelector('.img-filters');
-const filtersButtons = filtersContainer.querySelectorAll('.img-filters__button');
+const filterButtons = filtersContainer.querySelectorAll('.img-filters__button');
 const filterDefaultButton = filtersContainer.querySelector('#filter-default');
 const filterRandomButton = filtersContainer.querySelector('#filter-random');
 const filterDiscussedButton = filtersContainer.querySelector('#filter-discussed');
 
-const resetPictures = () => {
+const resetThumbnails = () => {
   const pictures = document.querySelectorAll('.pictures .picture');
   pictures.forEach((picture) => picture.remove());
 };
@@ -21,10 +21,10 @@ const setFilterRandom = (pictures) => createRandomIdFromRangeGenerator(pictures,
 
 const setFilterDiscussed = (pictures) => pictures.slice().sort((pictureA, pictureB) => pictureB.comments.length - pictureA.comments.length);
 
-const makeButtonActive = (evt) => {
+const onFilterButtonsClick = (evt) => {
   if (evt.target.closest('.img-filters__button')) {
     evt.target.classList.add('img-filters__button--active');
-    filtersButtons.forEach((button) => {
+    filterButtons.forEach((button) => {
       if (evt.target !== button) {
         button.classList.remove('img-filters__button--active');
       }
@@ -34,8 +34,8 @@ const makeButtonActive = (evt) => {
 
 const setFilterClick = (pictures) => {
   filtersContainer.addEventListener('click', debounce((evt) => {
-    makeButtonActive(evt);
-    resetPictures();
+    onFilterButtonsClick(evt);
+    resetThumbnails();
     switch (evt.target) {
       case filterDefaultButton:
         renderThumbnail(pictures);

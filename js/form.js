@@ -3,6 +3,7 @@ import {pristine} from './validate.js';
 import {resetScale} from './scale.js';
 import {resetEffects} from './effects.js';
 import {sendData} from './api.js';
+import {resetPhotoFields, setUserUploadPhoto} from './upload-photo.js';
 
 const form = document.querySelector('.img-upload__form');
 const body = document.querySelector('body');
@@ -29,6 +30,7 @@ function onCloseForm () {
   pristine.reset();
   resetScale();
   resetEffects();
+  resetPhotoFields();
   uploadOverlay.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
@@ -37,6 +39,7 @@ function onCloseForm () {
 const onOpenForm = () => {
   uploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
+  setUserUploadPhoto(uploadFile);
   document.addEventListener('keydown', onDocumentKeydown);
 };
 
@@ -69,7 +72,6 @@ const unblockSubmitButton = () => {
 const setUserFormSubmit = ({onSuccess, onError}) => {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
-
     const isValid = pristine.validate();
     if (isValid) {
       blockSubmitButton();

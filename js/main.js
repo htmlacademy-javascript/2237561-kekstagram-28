@@ -7,6 +7,7 @@ import {resetScale} from './scale.js';
 import {resetEffects} from './effects.js';
 import {showSuccessMessage, showErrorMessage} from './message.js';
 import {showFilters, setFilterClick} from './shuffle.js';
+import './upload-photo.js';
 
 setUserFormSubmit({
   onSuccess: () => {
