@@ -1,4 +1,4 @@
-import {isEscapeKey, showAlert} from './util.js';
+import {isEscapeKey} from './util.js';
 import {pristine} from './validate.js';
 import {resetScale} from './scale.js';
 import {resetEffects} from './effects.js';
