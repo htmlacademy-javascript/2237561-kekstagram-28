@@ -6,6 +6,7 @@ import {renderFullSizePhoto} from './render-full-size-photo.js';
 import {resetScale} from './scale.js';
 import {resetEffects} from './effects.js';
 import {showSuccessMessage, showErrorMessage} from './message.js';
+import {showFilters, setFilterClick} from './shuffle.js';
 
 setUserFormSubmit({
   onSuccess: () => {
@@ -19,8 +20,10 @@ setUserFormSubmit({
 });
 try {
   const data = await getData();
+  showFilters();
   renderFullSizePhoto(data);
   renderThumbnail(data);
+  setFilterClick(data);
 } catch (err){
   showAlert(err.massage);
 }

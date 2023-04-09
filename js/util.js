@@ -9,24 +9,16 @@ const getRandomInteger = (a, b) => {
 
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
-function createRandomIdFromRangeGenerator (min, max) {
-  const previousValues = [];
-
-  return function () {
-    let currentValue = getRandomInteger(min, max);
-    if (previousValues.length >= (max - min + 1)) {
-      //eslint-disable-next-line no-console
-      console.error(`Перебраны все числа из диапазона от ${min} до ${max}`);
-      return null;
+const createRandomIdFromRangeGenerator = (arr, length) => {
+  const someValues = [];
+  while (someValues.length < length) {
+    const currentElement = getRandomArrayElement(arr);
+    if (!someValues.includes(currentElement)) {
+      someValues.push(currentElement);
     }
-    while (previousValues.includes(currentValue)) {
-      currentValue = getRandomInteger(min, max);
-    }
-    previousValues.push(currentValue);
-    return currentValue;
-  };
-}
-
+  }
+  return someValues;
+};
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
 const showAlert = (message) => {
@@ -50,4 +42,25 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
-export {getRandomArrayElement, createRandomIdFromRangeGenerator, getRandomInteger, isEscapeKey, showAlert};
+const shuffle = (array) => {
+  let m = array.length, t, i;
+  while (m) {
+    i = Math.floor(Math.random() * m--);
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
+  }
+
+  return array;
+};
+
+function debounce (callback, timeoutDelay = 500) {
+  let timeoutId;
+
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+}
+
+export {getRandomArrayElement, createRandomIdFromRangeGenerator, getRandomInteger, isEscapeKey, showAlert, shuffle,debounce};
