@@ -6,7 +6,12 @@ const fullSizePhoto = document.querySelector('.big-picture');
 const socialComments = fullSizePhoto.querySelector('.social__comments');
 const commentsLoader = fullSizePhoto.querySelector('.social__comments-loader');
 
+const removeOLdPhotoList = () => {
+  containerPictures.querySelectorAll('.picture').forEach((item) => item.remove());
+};
+
 const renderFullSizePhoto = (pictures) => {
+  removeOLdPhotoList();
   containerPictures.addEventListener('click', (evt) => {
     const thumbnail = evt.target.closest('[data-thumbnail-index]');
     if(!thumbnail){
