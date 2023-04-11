@@ -41,7 +41,7 @@ function closeErrorKeydown (evt) {
 
 const showErrorMessage = function() {
   const errorMessage = errorMessageTemplate.cloneNode(true);
-  document.body.append(errorMessage);
+  document.body.appendChild(errorMessage);
   const errorModal = document.querySelector('.error');
   const errorButton = document.querySelector('.error__button');
 
@@ -53,7 +53,7 @@ const showErrorMessage = function() {
 
 const showSuccessMessage = function() {
   const successMessage = successMessageTemplate.cloneNode(true);
-  document.body.append(successMessage);
+  document.body.appendChild(successMessage);
   const successModal = document.querySelector('.success');
   const successButton = document.querySelector('.success__button');
 

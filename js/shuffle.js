@@ -1,8 +1,7 @@
-import { renderThumbnail } from './thumbnails.js';
-import { debounce, createRandomIdFromRangeGenerator } from './util.js';
+import {renderThumbnail} from './thumbnails.js';
+import {createRandomIdFromRangeGenerator, debounce} from './util.js';
 
 const IMG_AMOUNT = 10;
-const TIME_OF_DELAY = 500;
 
 const filtersContainer = document.querySelector('.img-filters');
 const filterButtons = filtersContainer.querySelectorAll('.img-filters__button');
@@ -33,21 +32,22 @@ const onFilterButtonsClick = (evt) => {
 };
 
 const setFilterClick = (pictures) => {
-  filtersContainer.addEventListener('click', debounce((evt) => {
+  filtersContainer.addEventListener('click', ((evt) => {
     onFilterButtonsClick(evt);
     resetThumbnails();
+    const debouncedRenderThumbnail = debounce(renderThumbnail);
     switch (evt.target) {
       case filterDefaultButton:
-        renderThumbnail(pictures);
+        debouncedRenderThumbnail(pictures);
         break;
       case filterRandomButton:
-        renderThumbnail(setFilterRandom(pictures));
+        debouncedRenderThumbnail(setFilterRandom(pictures));
         break;
       case filterDiscussedButton:
-        renderThumbnail(setFilterDiscussed(pictures));
+        debouncedRenderThumbnail(setFilterDiscussed(pictures));
         break;
     }
-  }, TIME_OF_DELAY));
+  }));
 };
 
 export { showFilters, setFilterClick };

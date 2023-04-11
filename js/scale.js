@@ -7,7 +7,7 @@ const form = document.querySelector('.img-upload__form');
 const scaleControlSmaller = form.querySelector('.scale__control--smaller');
 const scaleControlBigger = form.querySelector('.scale__control--bigger');
 const scaleControlValue = form.querySelector('.scale__control--value');
-const imgPrewiew = form.querySelector('.img-upload__preview');
+const imgPrewiew = form.querySelector('.img-upload__preview  img');
 
 const scaleImg = (value) => {
   imgPrewiew.style.transform = `scale(${value / 100})`;
