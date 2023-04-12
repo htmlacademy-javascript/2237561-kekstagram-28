@@ -10,8 +10,7 @@ const body = document.querySelector('body');
 const uploadOverlay = form.querySelector('.img-upload__overlay');
 const uploadCancel = form.querySelector('.img-upload__cancel');
 const uploadFile = form.querySelector('#upload-file');
-const commentField = form.querySelector('.text__description');
-const hashtagField = form.querySelector('.text__hashtags');
+const imgUploadText = form.querySelector('.img-upload__text');
 const submitButton = form.querySelector('.img-upload__submit');
 const SubmitButtonText = {
   IDLE: 'Сохранить',
@@ -21,11 +20,11 @@ const SubmitButtonText = {
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
-    onCloseForm();
+    onUploadCancelButtonClick();
   }
 };
 
-function onCloseForm () {
+function onUploadCancelButtonClick () {
   form.reset();
   pristine.reset();
   resetScale();
@@ -36,25 +35,19 @@ function onCloseForm () {
   document.removeEventListener('keydown', onDocumentKeydown);
 }
 
-const onOpenForm = () => {
+const onUploadFileClick = () => {
   uploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
   setUserUploadPhoto(uploadFile);
   document.addEventListener('keydown', onDocumentKeydown);
 };
 
-uploadFile.addEventListener('change', onOpenForm);
+uploadFile.addEventListener('change', onUploadFileClick);
 
-uploadCancel.addEventListener('click', onCloseForm);
+uploadCancel.addEventListener('click', onUploadCancelButtonClick);
 
-commentField.addEventListener('keydown', (evt) => {
-  if (evt.key === 'Escape'){
-    evt.stopPropagation();
-  }
-});
-
-hashtagField.addEventListener('keydown', (evt) => {
-  if (evt.key === 'Escape'){
+imgUploadText.addEventListener('keydown', (evt) => {
+  if (isEscapeKey){
     evt.stopPropagation();
   }
 });
@@ -87,4 +80,4 @@ const setUserFormSubmit = ({onSuccess, onError}) => {
   });
 };
 
-export {blockSubmitButton, unblockSubmitButton, setUserFormSubmit, onOpenForm, onCloseForm, onDocumentKeydown};
+export {blockSubmitButton, unblockSubmitButton, setUserFormSubmit, onUploadFileClick, onUploadCancelButtonClick, onDocumentKeydown};

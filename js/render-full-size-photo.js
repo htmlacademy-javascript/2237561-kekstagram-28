@@ -1,5 +1,5 @@
 import './thumbnails.js';
-import {onClickThumbnail, createCommentsList, renderComments} from './full-size-photo.js';
+import {onClickThumbnail, createCommentsList, loadComments} from './full-size-photo.js';
 
 const containerPictures = document.querySelector('.pictures');
 const fullSizePhoto = document.querySelector('.big-picture');
@@ -22,7 +22,7 @@ const renderFullSizePhoto = (pictures) => {
     onClickThumbnail(photoItem);
     commentsLoader.classList.remove('hidden');
     createCommentsList(photoItem.comments, socialComments);
-    renderComments();
+    loadComments();
   });
 };
 export {renderFullSizePhoto};

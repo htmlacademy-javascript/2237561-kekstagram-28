@@ -54,7 +54,7 @@ const showComments = (arr) => {
   }
   commentsCount.textContent = `${socialComments.children.length - socialComments.querySelectorAll('.hidden').length} из ${socialComments.children.length} комментариев`;
 };
-const renderComments = () => {
+const loadComments = () => {
   const hiddenComments = socialComments.querySelectorAll('.hidden');
   showComments(hiddenComments);
   if(hiddenComments.length <= COMMENTS_AMOUNT) {
@@ -62,7 +62,7 @@ const renderComments = () => {
   }
 };
 
-commentsLoader.addEventListener('click', renderComments);
+commentsLoader.addEventListener('click', loadComments);
 
 const onClickThumbnail = (someThumbnails) => {
   fullSizePhoto.classList.remove('hidden');
@@ -84,4 +84,4 @@ fullSizeClosePhoto.addEventListener('click', () => {
   closeFullSizePhoto();
 });
 
-export {onClickThumbnail, createCommentsList, renderComments};
+export {onClickThumbnail, createCommentsList, loadComments};
