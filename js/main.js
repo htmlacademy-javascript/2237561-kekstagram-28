@@ -1,7 +1,7 @@
 import {renderThumbnail} from './thumbnails.js';
 import {getData} from './api.js';
 import {showAlert} from './util.js';
-import {setUserFormSubmit, onCloseForm} from './form.js';
+import {setUserFormSubmit, onUploadCancelButtonClick} from './form.js';
 import {renderFullSizePhoto} from './render-full-size-photo.js';
 import {resetScale} from './scale.js';
 import {resetEffects} from './effects.js';
@@ -11,7 +11,7 @@ import './upload-photo.js';
 
 setUserFormSubmit({
   onSuccess: () => {
-    onCloseForm();
+    onUploadCancelButtonClick();
     showSuccessMessage();
   },
   onError: (err) => {

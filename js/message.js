@@ -1,8 +1,11 @@
 import {isEscapeKey} from './util.js';
-import {onCloseForm, onDocumentKeydown} from './form.js';
+import {onUploadCancelButtonClick, onDocumentKeydown} from './form.js';
 
-const successMessageTemplate = document.querySelector('#success').content;
-const errorMessageTemplate = document.querySelector('#error').content;
+const body = document.querySelector('body');
+const successMessageTemplate = document.querySelector('#success').content.querySelector('.success').cloneNode(true);
+const successButton = successMessageTemplate.querySelector('.success__button');
+const errorMessageTemplate = document.querySelector('#error').content.querySelector('.error').cloneNode(true);
+const errorButton = errorMessageTemplate.querySelector('.error__button');
 
 const closeErrorMessage = () => {
   document.querySelector('.error').remove();
@@ -19,19 +22,9 @@ const closeSuccessMessage = () => {
 function closeSuccessKeydown (evt) {
   if (isEscapeKey(evt)) {
     closeSuccessMessage();
-    onCloseForm();
+    onUploadCancelButtonClick();
   }
 }
-
-const onClickOutModal = (evt) => {
-  if(evt.target.matches('.success')){
-    closeSuccessMessage();
-    onCloseForm();
-  }
-  if(evt.target.matches('.error')){
-    closeErrorMessage();
-  }
-};
 
 function closeErrorKeydown (evt) {
   if (isEscapeKey(evt)) {
@@ -39,25 +32,32 @@ function closeErrorKeydown (evt) {
   }
 }
 
-const showErrorMessage = function() {
-  const errorMessage = errorMessageTemplate.cloneNode(true);
-  document.body.append(errorMessage);
-  const errorModal = document.querySelector('.error');
-  const errorButton = document.querySelector('.error__button');
+const onSuccessOutModalClick = (evt) => {
+  if(evt.target.matches('.success')){
+    closeSuccessMessage();
+    onUploadCancelButtonClick();
+  }
+};
 
-  errorModal.addEventListener('click', onClickOutModal);
+const onErrorOutModalClick = (evt) => {
+  if(evt.target.matches('.error')){
+    closeErrorMessage();
+  }
+};
+
+const showErrorMessage = () => {
+  body.appendChild(errorMessageTemplate);
+
+  document.addEventListener('click', onErrorOutModalClick);
   errorButton.addEventListener('click', closeErrorMessage);
   document.removeEventListener('keydown', onDocumentKeydown);
   document.addEventListener('keydown', closeErrorKeydown);
 };
 
-const showSuccessMessage = function() {
-  const successMessage = successMessageTemplate.cloneNode(true);
-  document.body.append(successMessage);
-  const successModal = document.querySelector('.success');
-  const successButton = document.querySelector('.success__button');
+const showSuccessMessage = () => {
+  body.appendChild(successMessageTemplate);
 
-  successModal.addEventListener('click', onClickOutModal);
+  document.addEventListener('click', onSuccessOutModalClick);
   successButton.addEventListener('click', closeSuccessMessage);
   document.removeEventListener('keydown', onDocumentKeydown);
   document.addEventListener('keydown', closeSuccessKeydown);
