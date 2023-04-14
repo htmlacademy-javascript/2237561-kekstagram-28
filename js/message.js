@@ -1,8 +1,11 @@
 import {isEscapeKey} from './util.js';
 import {onUploadCancelButtonClick, onDocumentKeydown} from './form.js';
 
-const successMessageTemplate = document.querySelector('#success').content;
-const errorMessageTemplate = document.querySelector('#error').content;
+const body = document.querySelector('body');
+const successMessageTemplate = document.querySelector('#success').content.querySelector('.success').cloneNode(true);
+const successButton = successMessageTemplate.querySelector('.success__button');
+const errorMessageTemplate = document.querySelector('#error').content.querySelector('.error').cloneNode(true);
+const errorButton = errorMessageTemplate.querySelector('.error__button');
 
 const closeErrorMessage = () => {
   document.querySelector('.error').remove();
@@ -43,24 +46,18 @@ const onErrorOutModalClick = (evt) => {
 };
 
 const showErrorMessage = () => {
-  const errorMessage = errorMessageTemplate.cloneNode(true);
-  document.body.appendChild(errorMessage);
-  const errorModal = document.querySelector('.error');
-  const errorButton = document.querySelector('.error__button');
+  body.appendChild(errorMessageTemplate);
 
-  errorModal.addEventListener('click', onErrorOutModalClick);
+  document.addEventListener('click', onErrorOutModalClick);
   errorButton.addEventListener('click', closeErrorMessage);
   document.removeEventListener('keydown', onDocumentKeydown);
   document.addEventListener('keydown', closeErrorKeydown);
 };
 
 const showSuccessMessage = () => {
-  const successMessage = successMessageTemplate.cloneNode(true);
-  document.body.appendChild(successMessage);
-  const successModal = document.querySelector('.success');
-  const successButton = document.querySelector('.success__button');
+  body.appendChild(successMessageTemplate);
 
-  successModal.addEventListener('click', onSuccessOutModalClick);
+  document.addEventListener('click', onSuccessOutModalClick);
   successButton.addEventListener('click', closeSuccessMessage);
   document.removeEventListener('keydown', onDocumentKeydown);
   document.addEventListener('keydown', closeSuccessKeydown);
